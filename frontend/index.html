@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Portal - IIITDM</title>
+    <meta name="description" content="Campus Placement Portal for managing recruitment drives, company registrations, and student applications.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <navbar-component v-if="isLoggedIn" :user="currentUser" @logout="logout"></navbar-component>
+        <router-view :user="currentUser" @login-success="onLoginSuccess"></router-view>
+        <!-- Toast -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+            <div id="appToast" class="toast align-items-center border-0" :class="'text-bg-' + toast.type" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">{{ toast.message }}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.4.21/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@4.3.0/dist/vue-router.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+    <!-- Components -->
+    <script src="/static/js/components/Navbar.js"></script>
+    <script src="/static/js/components/Login.js"></script>
+    <script src="/static/js/components/Register.js"></script>
+    <script src="/static/js/components/AdminDashboard.js"></script>
+    <script src="/static/js/components/AdminCompanies.js"></script>
+    <script src="/static/js/components/AdminStudents.js"></script>
+    <script src="/static/js/components/AdminDrives.js"></script>
+    <script src="/static/js/components/AdminReports.js"></script>
+    <script src="/static/js/components/AdminApplications.js"></script>
+    <script src="/static/js/components/CompanyDashboard.js"></script>
+    <script src="/static/js/components/CompanyDrives.js"></script>
+    <script src="/static/js/components/CompanyApplications.js"></script>
+    <script src="/static/js/components/CompanyInterviews.js"></script>
+    <script src="/static/js/components/StudentDashboard.js"></script>
+    <script src="/static/js/components/StudentApplications.js"></script>
+    <script src="/static/js/components/StudentProfile.js"></script>
+    <script src="/static/js/components/StudentHistory.js"></script>
+
+    <!-- App -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

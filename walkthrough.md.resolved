@@ -1,0 +1,90 @@
+# Placement Portal Application - Walkthrough
+
+## What Was Built
+
+A **full-stack Placement Portal** with Flask + Vue.js 3 + SQLite + Redis + Celery supporting three roles: Admin, Company, and Student.
+
+## Project Structure
+
+```
+sujith/
+├── backend/
+│   ├── app.py              # Flask app factory, serves frontend
+│   ├── config.py           # Configuration (DB, Redis, Mail, JWT)
+│   ├── models.py           # 6 SQLAlchemy models
+│   ├── tasks.py            # 3 Celery tasks (daily, monthly, CSV)
+│   ├── requirements.txt
+│   └── routes/
+│       ├── auth.py         # Login, register, /me
+│       ├── admin.py        # Full CRUD + reports
+│       ├── company.py      # Profile, drives, applications, interviews
+│       └── student.py      # Profile, drives, apply, history, export
+└── frontend/
+    ├── index.html          # Entry point (CDN: Vue 3, Bootstrap 5, Chart.js)
+    └── static/
+        ├── css/style.css   # Custom design system
+        └── js/
+            ├── app.js      # Vue Router + auth state
+            └── components/ # 17 Vue components
+```
+
+## How to Run
+
+```bash
+cd backend
+pip install -r requirements.txt
+python app.py
+# Open http://localhost:5000
+```
+
+**Admin credentials:** `admin@ppa.com` / `admin123`
+
+For Celery/Redis (optional for async jobs):
+```bash
+redis-server
+celery -A tasks.celery_app worker --loglevel=info
+celery -A tasks.celery_app beat --loglevel=info
+```
+
+## Verified Screenshots
+
+````carousel
+![Login Page](C:/Users/bhadr/.gemini/antigravity/brain/bdba7f07-9881-4811-add8-aa0a78f07e0a/login_page.png)
+<!-- slide -->
+![Admin Dashboard](C:/Users/bhadr/.gemini/antigravity/brain/bdba7f07-9881-4811-add8-aa0a78f07e0a/admin_dashboard.png)
+````
+
+## Features Implemented
+
+| Feature | Status |
+|---|---|
+| JWT auth (login/register/role-based) | ✅ |
+| Admin: Dashboard with 6 stat cards | ✅ |
+| Admin: CRUD Companies + approve/reject/blacklist | ✅ |
+| Admin: CRUD Students + search/blacklist | ✅ |
+| Admin: CRUD Drives + approve/close | ✅ |
+| Admin: Applications with drive/student/status filtering | ✅ |
+| Admin: Reports with Chart.js charts | ✅ |
+| Company: Registration with pending approval | ✅ |
+| Company: Create/edit/delete drives (gated by approval) | ✅ |
+| Company: View/manage applications per drive | ✅ |
+| Company: Schedule/manage interviews | ✅ |
+| Company: Update application status (shortlist→selected) | ✅ |
+| Student: Browse approved drives with search | ✅ |
+| Student: Eligibility validation before apply | ✅ |
+| Student: Duplicate application prevention | ✅ |
+| Student: View applications + interview details | ✅ |
+| Student: Placement history | ✅ |
+| Student: Profile edit + resume upload | ✅ |
+| Student: CSV export (async with fallback) | ✅ |
+| Celery: Daily reminders | ✅ |
+| Celery: Monthly HTML report | ✅ |
+| Redis caching (with SimpleCache fallback) | ✅ |
+
+## Testing Results
+
+- ✅ Login page loads with gradient background
+- ✅ Admin login successful → dashboard with stats
+- ✅ All admin nav pages load (Companies, Students, Drives, Applications, Reports)
+- ✅ Company registration works → pending approval banner shown
+- ✅ Backend APIs verified (JWT tokens, role guards)

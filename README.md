@@ -1,6 +1,6 @@
 # Placement Portal - IIITDM
 
-A comprehensive web-based campus placement portal for managing recruitment drives, company registrations, and student applications at IIITDM.
+A comprehensive web-based campus placement portal for managing recruitment drives, company registrations, and student applications.
 
 ## 📋 Table of Contents
 
@@ -474,15 +474,13 @@ For contributions:
 ## 📞 Support
 
 For issues or questions:
-- Check the [implementation_plan.md](implementation_plan.md) for project documentation
 - Open an issue on GitHub
-- Contact: sujith.placement@iiitdm.ac.in
+- Contact: rsujithgopi@gmail.com
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Built as part of MAD-2 (Mobile App Development 2) coursework at IIT Madras
 - Uses open-source libraries: Flask, Vue.js, Bootstrap, SQLAlchemy
 - Inspired by real-world placement management systems
 
